@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: #050505;
+  color: #F4F4F5;
+  font-family: var(--font-chivo), system-ui, -apple-system, sans-serif;
+  font-feature-settings: "ss01", "ss02";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(0, 229, 255, 0.04), transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(255, 171, 0, 0.03), transparent 40%),
+    linear-gradient(rgba(63, 63, 70, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(63, 63, 70, 0.08) 1px, transparent 1px);
+  background-size: auto, auto, 32px 32px, 32px 32px;
+  background-attachment: fixed;
+}
+
+/* Tabular numeric everywhere data appears */
+.font-mono, code, kbd, pre, samp {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum", "ss01";
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d10;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid #00E5FF;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 229, 255, 0.25);
+  color: #F4F4F5;
+}
+
+/* Utility: micro grid overlay */
+.bg-grid-fine {
+  background-image:
+    linear-gradient(rgba(63, 63, 70, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(63, 63, 70, 0.15) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.bg-grid-blueprint {
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Scanline for tactical panels */
+.scanlines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 229, 255, 0.025) 3px,
+    rgba(0, 229, 255, 0.025) 4px
+  );
+  z-index: 1;
+}
+
+/* Diagonal caution stripes */
+.stripes-caution {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 171, 0, 0.12) 0,
+    rgba(255, 171, 0, 0.12) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.stripes-critical {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 59, 48, 0.15) 0,
+    rgba(255, 59, 48, 0.15) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.glow-critical {
+  box-shadow: 0 0 0 1px rgba(255, 59, 48, 0.4), 0 0 24px rgba(255, 59, 48, 0.25);
+}
+.glow-cyan {
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.3), 0 0 18px rgba(0, 229, 255, 0.2);
+}
+.glow-amber {
+  box-shadow: 0 0 0 1px rgba(255, 171, 0, 0.35), 0 0 18px rgba(255, 171, 0, 0.2);
+}
+
+/* Ticker */
+.marquee-track {
+  display: inline-flex;
+  will-change: transform;
+  animation: marquee 60s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
